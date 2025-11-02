@@ -6,10 +6,14 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MyTaskDetails from "./MyTaskDetails";
 
+import CancelTask from "./CancelTask";
+
 const MyTasks = () => {
   const [myTask, setMyTask] = useState([]);
   const [isDetails, setDetails] = useState(false);
   const [isClickedItem, setClickedItem] = useState([]);
+  const [isOpen1, setIsOpen1] = useState(false);
+
   const { tasks } = useSelector((state) => state.tasksSlice);
 
   useEffect(() => {
@@ -21,11 +25,6 @@ const MyTasks = () => {
     setDetails(true);
     const myTaskDetail = myTask.filter((item) => item.id === id);
     myTaskDetail.map((item) => setClickedItem(item));
-  };
-
-  const cancelTask = (id) => {
-    let canceledTask = myTask.filter((item) => item.id !== id);
-    setMyTask(canceledTask);
   };
 
   return (
@@ -52,12 +51,19 @@ const MyTasks = () => {
                 isClickedItem={isClickedItem}
               ></MyTaskDetails>
               <button
-                onClick={() => cancelTask(item.id)}
+                onClick={() => setIsOpen1(!isOpen1)}
                 className="grid place-content-center"
                 title="Done"
               >
                 <CheckIcon className="w-5 h-5 text-primary" />
               </button>
+              <CancelTask
+                isOpen1={isOpen1}
+                setIsOpen1={setIsOpen1}
+                myTask={myTask}
+                setMyTask={setMyTask}
+                item={item}
+              ></CancelTask>
             </div>
           </div>
         ))}

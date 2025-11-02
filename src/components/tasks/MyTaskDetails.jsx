@@ -16,7 +16,6 @@ const MyTaskDetails = ({ isDetails, setDetails, isClickedItem }) => {
           transition
           className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
         />
-
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <DialogPanel
@@ -50,7 +49,7 @@ const MyTaskDetails = ({ isDetails, setDetails, isClickedItem }) => {
                   onClick={() => setDetails(false)}
                   className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto"
                 >
-                  Deactivate
+                  Done
                 </button>
                 <button
                   type="button"
