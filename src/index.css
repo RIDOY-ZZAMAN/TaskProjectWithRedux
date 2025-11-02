@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 .btn {
-  @apply rounded-xl h-10 px-4 grid place-content-center font-semibold  transition-all;
+  @apply rounded-xl h-10 px-4 grid place-content-center font-semibold transition-all;
 }
 
-.btn-primary {
-  @apply bg-primary text-white;
-}
+/* Define custom button styles inside @layer */
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white;
+  }
 
-.btn-danger {
-  @apply bg-red-500 text-white;
+  .btn-danger {
+    @apply bg-red-500 text-white;
+  }
 }

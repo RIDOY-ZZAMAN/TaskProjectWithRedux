@@ -1,14 +1,13 @@
-/* eslint-disable no-undef */
-/** @type {import('tailwindcss').Config} */
+import forms from "@tailwindcss/forms";
+
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        primary: '#2453DF',
-        secondary: '#0C1F58',
+        primary: "#3b82f6", // You can change this to any color you like
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [forms],
 };
