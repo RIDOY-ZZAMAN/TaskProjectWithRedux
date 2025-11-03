@@ -2,28 +2,23 @@ import {
   CheckIcon,
   DocumentMagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import MyTaskDetails from "./MyTaskDetails";
 
 import CancelTask from "./CancelTask";
 
 const MyTasks = () => {
-  const [myTask, setMyTask] = useState([]);
   const [isDetails, setDetails] = useState(false);
   const [isClickedItem, setClickedItem] = useState([]);
   const [isOpen1, setIsOpen1] = useState(false);
-
   const { tasks } = useSelector((state) => state.tasksSlice);
-
-  useEffect(() => {
-    let Task = tasks.filter((item) => item.assignedTo === "Ridoy");
-    setMyTask(Task);
-  }, [tasks]);
+  const { name } = useSelector((state) => state.userSlice);
+  const userTask = tasks.filter((item) => item.assignedTo === name);
 
   const handleDetails = (id) => {
     setDetails(true);
-    const myTaskDetail = myTask.filter((item) => item.id === id);
+    const myTaskDetail = userTask.filter((item) => item.id === id);
     myTaskDetail.map((item) => setClickedItem(item));
   };
 
@@ -31,7 +26,7 @@ const MyTasks = () => {
     <div>
       <h1 className="text-xl my-3">My Tasks</h1>
       <div className=" h-[750px] overflow-auto space-y-3">
-        {myTask.map((item) => (
+        {userTask.map((item) => (
           <div
             key={item.id}
             className="bg-secondary/10 rounded-md p-3 flex justify-between"
@@ -60,8 +55,7 @@ const MyTasks = () => {
               <CancelTask
                 isOpen1={isOpen1}
                 setIsOpen1={setIsOpen1}
-                myTask={myTask}
-                setMyTask={setMyTask}
+                userTask={userTask}
                 item={item}
               ></CancelTask>
             </div>
